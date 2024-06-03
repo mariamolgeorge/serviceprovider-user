@@ -1,0 +1,418 @@
+<div class="product-sidebar-wrap checkout-sidebar basic-service-page product-sidebar" *ngIf="isServiceBooking==true">
+    <h3>{{servicebooking.ServiceName}}
+        <button id="closebtn" (click)="CloseBooking()"><i class="fas fa-times"></i></button>
+    </h3>
+
+    <div class="container accordian-wrapper">
+
+        <label for="">Is Urgently Required</label>
+        <div class="row">
+            <div class="col-6"><button class="{{servicebooking.ServiceType==1?'accbtns active':'accbtns'}}"
+                    (click)="changeservicetype(1)">Book Now</button> </div>
+            <div class="col-6"><button class="{{servicebooking.ServiceType==2?'accbtns active':'accbtns'}}"
+                    (click)="changeservicetype(2)">Schedule for later</button> </div>
+        </div>
+        <!-- <label for="">Delivery Address</label>
+      <button class="accbtns" (click)="Toggle(1)">Select Address</button>
+
+      <label for="" *ngIf="servicebooking.ServiceType==2">Service required on</label>
+      <button class="accbtns" *ngIf="servicebooking.ServiceType==2" (click)="Toggle(2)">Date & Time</button> -->
+
+        <h4>Service Information</h4>
+
+        <label for="">Additional details, if any</label>
+        <textarea [(ngModel)]="servicebooking.Remarks" name="" class="form-control" id="" cols="30"
+            rows="10"></textarea>
+
+
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <button (click)="ToggleCollapse(1)"
+                        class="{{CollapseType==1?'btn btn-link':'btn btn-link collapsed'}}" data-toggle="collapse"
+                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        RateChart
+                    </button>
+                </div>
+
+                <div id="collapseOne" class="{{CollapseType==1?'collapse show':'collapse'}}"
+                    aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul>
+                            <li *ngFor="let rate of RateChartList">{{rate.Name}}-{{rate.Amount|number:'.2-2'}}/-</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <button (click)="ToggleCollapse(2)"
+                        class="{{CollapseType==2?'btn btn-link':'btn btn-link collapsed'}}" data-toggle="collapse"
+                        data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                        Service Description
+                    </button>
+                </div>
+                <div id="collapseFour" class="{{CollapseType==2?'collapse show':'collapse'}}"
+                    aria-labelledby="headingFour" data-parent="#accordion">
+                    <div class="card-body">
+                        {{servicebooking.ServiceDescription}}
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <button (click)="ToggleCollapse(3)"
+                        class="{{CollapseType==3?'btn btn-link':'btn btn-link collapsed'}}" data-toggle="collapse"
+                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        FAQ
+                    </button>
+                </div>
+                <div id="collapseTwo" class="{{CollapseType==3?'collapse show':'collapse'}}"
+                    aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                        squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                        nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+                        single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                        beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+                        lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
+                        probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <button (click)="ToggleCollapse(4)"
+                        class="{{CollapseType==4?'btn btn-link':'btn btn-link collapsed'}}" data-toggle="collapse"
+                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        How it Works
+                    </button>
+                </div>
+                <div id="collapseThree" class="{{CollapseType==4?'collapse show':'collapse'}}"
+                    aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                        squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                        nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+                        single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                        beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+                        lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
+                        probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="proceed-btn">
+            <button class="" (click)="ContinueBooking()">Continue Booking</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="product-sidebar-wrap checkout-sidebar address-page product-sidebar" *ngIf="isAdress==true">
+
+    <h3 style="text-align:center;">Address
+        <button style="left:0px !important;" id="closebtn" (click)="CloseAddress()"><i
+                class="fas fa-arrow-left"></i></button>
+        <button id="closebtn" (click)="CloseAddress()"><i class="fas fa-times"></i></button>
+    </h3>
+    <div class="container ">
+        <div class="address-map">
+            <agm-map [latitude]="servicebooking.Latitude" [longitude]="servicebooking.Longitude" [zoom]="15">
+                <agm-marker [latitude]="servicebooking.Latitude" [longitude]="servicebooking.Longitude"
+                    (dragEnd)="markerDragEnd($event)" [markerDraggable]="true">
+                </agm-marker>
+            </agm-map>
+        </div>
+
+        <h6>Help Us Locate Yourself</h6>
+        <textarea name="" placeholder="Address*" id="" cols="30" rows="10"
+            [(ngModel)]="servicebooking.Address"></textarea>
+        <input type="text" placeholder="House/Flat">
+
+        <!-- <h6>What's the type of this address?</h6>
+        <div class="row">
+            <div class="col-4"><button>Home</button></div>
+            <div class="col-4"><button class="active">Work</button></div>
+            <div class="col-4"><button>Other</button></div>
+        </div> -->
+
+
+
+        <div class="proceed-btn">
+            <button class="" (click)="submitAddress()">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<div class="product-sidebar-wrap checkout-sidebar checkout-page product-sidebar" *ngIf="isDateTime==true">
+    <h3 style="text-align:center;">{{servicebooking.ServiceName}}
+        <button style="left:0px !important" id="closebtn" (click)="CloseDateTime()"><i
+                class="fas fa-arrow-left"></i></button>
+        <button id="closebtn" (click)="CloseDateTime()"><i class="fas fa-times"></i></button>
+    </h3>
+    <div class="pickup-address">
+        <i class="fas fa-map-marker-alt"></i>
+        <h6>Pickup Address <button (click)="Toggle(1)">Change</button></h6>
+        <p>{{servicebooking.Address}}</p>
+    </div>
+
+    <div class="container ">
+        <h5>Select your preferred Date & Time</h5>
+        <ul class="select-date" style="display: contents;">
+            <li *ngFor="let date of dateSlotList;">
+                <button [class.active]="date.isActive&&isShow" (click)="onDateClick(date)"><b>{{date.Date|date:'d'}}</b>
+                    {{date.Date|date:'EEE'}}</button>
+            </li>
+            <li><button (click)="OpenCalendar()"><i class="fas fa-calendar-alt"></i></button></li>
+
+            <!-- <li><button><b>12</b> Tue</button></li>
+            <li><button class="active"><b>12</b> Tue</button></li>
+            <li><button><b>12</b> Tue</button></li>
+            <li><button><b>12</b> Tue</button></li>
+            <li><button><b>12</b> Tue</button></li>
+            <li><button><b>12</b> Tue</button></li>
+            <li><button><b>12</b> Tue</button></li> -->
+        </ul>
+        <!-- <input (change)="Inputchange($event)" class="boxclass" style="width: 320px;" *ngIf="isCalendar==true"
+            type="date" [(ngModel)]="servicebooking.JustTime">
+            {{servicebooking.JustTime}} -->
+
+            <input (change)="Inputchange($event)" class="boxclass" style="width: 320px;"  *ngIf="isCalendar==true"
+            type="date" [(ngModel)]="servicebooking.ServiceDate">
+<h5 *ngIf="showdate">Selected Date : <font style="color: var(--blue);">{{caldate}}</font> </h5>
+        <div *ngIf="isShow">
+
+            <h5 *ngIf="TimeSlot">Pick Time slot <font>({{TimeList.length}} Time slot available)</font>
+            </h5>
+            <h5 *ngIf="!TimeSlot&&timesloths" style="color: red;">No Available TimeSlots For Today
+            </h5>
+    
+    
+    
+            <ul class="select-timeslot">
+    
+                <!-- commented by anu 07/10/2021,For solving timeslot design issue -->
+                <!-- <li style="display:block;width:255px" *ngFor="let item of TimeList;let i=index">
+                    <button (click)="SelectTime(item)" class="{{(item.StartTime==servicebooking.ServiceTime)?'active':''}}"
+                        [disabled]="CheckCurrentTime(item.StartTime)">
+                        <b>{{item.StartTime|date:'shortTime'}}-{{item.EndTime|date:'shortTime'}}</b>
+                    </button><br>
+                </li> -->
+                  <!-- commented by anu 07/10/2021,For solving timeslot design issue-->
+    
+                  <!-- added by anu 07/10/2021 -->
+                    <li *ngFor="let item of TimeList;let i=index">
+                        <button (click)="SelectTime(item)" class="{{(item.StartTime==servicebooking.ServiceTime)?'active':''}}" 
+                        [disabled]="CheckCurrentTime(item.StartTime)">
+                            <b>{{item.StartTime|date:'shortTime'}}-{{item.EndTime|date:'shortTime'}}</b>
+                            
+                        </button>
+                    </li>
+                    
+            </ul>
+
+        </div>
+
+
+
+        <!-- <ul class="select-timeslot"  *ngIf="NoTimeSlot>0">
+NoTimeSlot
+            <b>
+
+
+                No Timeslots available
+            </b>
+
+        </ul> -->
+
+        <!-- <h5>Payment Method</h5>
+        <div class="payment-method">
+            <div class="row">
+                <div class="col-6"><button class="{{servicebooking.PaymentType==1?'active':''}}" (click)="Selectpayment(1)">Pay on Service</button></div>
+                <div class="col-6"><button class="{{servicebooking.PaymentType==2?'active':''}}" (click)="Selectpayment(2)">Pay Online</button></div>
+            </div>
+        </div> -->
+        <!-- <p><b>Note:</b> Lorem ipsum dolor sitamet consectetur adipiscing elit</p> -->
+        <div class="proceed-btn">
+            <div class="row">
+                <div class="col-6">
+                    <!-- commented by anu 4/8/2021 -->
+                    <h5 *ngIf="servicebooking.Amount>0"><i
+                            class="fas fa-rupee-sign"></i>{{servicebooking.Amount|number:'.2-2'}}/-</h5>
+                    <a></a>
+                </div>
+                <!-- <div class="col-6"><button (click)="Proceed()">Place Order</button></div>    [disabled]="!servicebooking.ServiceTime&&!servicebooking.ServiceDate" -->
+                <div class="col-6" *ngIf="servicebooking.Amount>0"><button [disabled]
+                        (click)="GotoBankDetails()">Proceed</button>
+                </div>
+                <div class="col-6" *ngIf="servicebooking.Amount==0"><button
+                        (click)="InsertServiceBooking()">Proceed</button></div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="product-sidebar-wrap checkout-sidebar loginsidebar-con product-sidebar" *ngIf="isLogin==true">
+    <h3 style="text-align:center;">Login
+        <button style="left:0px !important" id="closebtn" (click)="CloseLogin()"><i
+                class="fas fa-arrow-left"></i></button>
+        <button id="closebtn" (click)="CloseLogin()"><i class="fas fa-times"></i></button>
+    </h3>
+
+    <div class="container ">
+
+        <div class="login-content-holder">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-pause="false">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleSlidesOnly" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleSlidesOnly" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleSlidesOnly" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="assets/img/acservice.jpg" alt="bluesky">
+                    </div>
+
+                    <div class="carousel-item ">
+                        <img src="assets/img/plumberrr.jpg" alt="bluesky">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="assets/img/electrician.jpg" alt="bluesky">
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="IsLogin==true">
+                <div class="login-item">
+                    <label>Mobile</label>
+                    <input type="number" [(ngModel)]="username" placeholder="Enter Mobile No." class="form-control">
+                </div>
+
+                <button (click)="Login()">Proceed</button>
+                <!-- <h5><a href="">Forgot Password?</a></h5> -->
+            </div>
+
+            <div *ngIf='IsOTP==true'>
+                <div class="login-item">
+                    <label>Password</label>
+                    <input [(ngModel)]="user.Password" placeholder="Enter OTP*" class="form-control">
+                </div>
+
+                <button (click)='OTPVerifications()'>Login</button>
+                <h5><a style="cursor:pointer;" (click)="ResendOtp()">Resend OTP</a></h5>
+            </div>
+
+            <div *ngIf='IsRegister'>
+                <div class="login-item">
+                    <label>Name</label>
+                    <input [(ngModel)]="user.Name" type="text" placeholder="Enter Name*" class="form-control">
+                </div>
+
+                <div class="login-item">
+                    <label>Address</label>
+                    <input [(ngModel)]="user.Address" type="text" placeholder="Enter Address*" class="form-control">
+                </div>
+
+                <div class="login-item">
+                    <label>Pincode</label>
+                    <input [(ngModel)]="user.Pincode" type="number" placeholder="Enter Pincode*" class="form-control">
+                </div>
+
+                <button (click)='UpdateNameAndAddress()'>Register</button>
+
+            </div>
+
+
+        </div>
+
+        <!-- <div class="proceed-btn">
+            <button class="">Dont have an account? <strong>Sign Up Now</strong></button>
+        </div> -->
+    </div>
+</div>
+
+<div class="product-sidebar-wrap checkout-sidebar product-sidebar" *ngIf="isSuccess || isFail">
+    <h3>Thank You
+        <button id="closebtn" (click)="CloseBooking()"><i class="fas fa-times"></i></button>
+    </h3>
+
+    <div class="container">
+
+
+        <div class="alert-messages success-msg" *ngIf="isSuccess">
+            <i class="far fa-check-circle"></i>
+            <h4>Booked Successfully</h4>
+            <!-- <h6>
+                <font>Order No : 1234</font>
+            </h6> -->
+        </div>
+
+        <div class="alert-messages failure-msg" *ngIf="isFail">
+            <i class="far fa-times-circle"></i>
+            <h4>Booking Failed</h4>
+            <!-- <h6>
+                <font>Order No : 1234</font>
+            </h6> -->
+        </div>
+
+
+
+    </div>
+</div>
+
+
+<div class="product-sidebar-wrap checkout-sidebar address-page product-sidebar"
+    *ngIf="isBankDetails==true && servicebooking.Amount>0">
+    <h3 style="text-align:center;">Please Scan Your QR Code
+
+        <button style="left:0px !important;" id="closebtn" (click)="CloseBankDetails()"><i
+                class="fas fa-arrow-left"></i></button>
+        <!-- <button id="closebtn" (click)="CloseAddress()"><i class="fas fa-times"></i></button> -->
+    </h3>
+    <div class="container ">
+
+        <div>
+            <img class="qrcode" src="assets/img/qrcode.png" alt="bluesky">
+        </div>
+        <h5><label><b>Account Details</b></label></h5>
+        <h6><label><b>Bank Name</b> : South Indian Bank</label></h6>
+        <!-- <h6><lablel>Branch : Ernakulam</lablel></h6>  -->
+        <h6><label><b>Acc.No</b> : 3061234567</label></h6>
+        <h6><label><b>IFSC Code</b>:QWE12345</label></h6>
+
+        <!-- <div class="address-map">
+                <agm-map [latitude]="servicebooking.Latitude" [longitude]="servicebooking.Longitude" [zoom]="15">
+                    <agm-marker [latitude]="servicebooking.Latitude" [longitude]="servicebooking.Longitude"
+                      (dragEnd)="markerDragEnd($event)" [markerDraggable]="true">
+                    </agm-marker>
+                  </agm-map>
+        </div> -->
+
+        <!-- <h6>Help Us Locate Yourself</h6>
+        <textarea name="" placeholder="Address*"id="" cols="30" rows="10" [(ngModel)]="servicebooking.Address"></textarea>
+        <input type="text" placeholder="House/Flat"> -->
+
+        <!-- <h6>What's the type of this address?</h6>
+        <div class="row">
+            <div class="col-4"><button>Home</button></div>
+            <div class="col-4"><button class="active">Work</button></div>
+            <div class="col-4"><button>Other</button></div>
+        </div> -->
+
+
+
+        <div class="proceed-btn">
+            <button class="" (click)="InsertServiceBooking()">Proceed</button>
+        </div>
+    </div>
+</div>
+
+<app-alert-info></app-alert-info>

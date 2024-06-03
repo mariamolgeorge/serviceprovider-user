@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ServiceBooking</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+<div>
+  <ion-item>
+    <ion-label>ServiceName</ion-label>
+    <ion-label> 
+  {{servicebooking.ServiceName}}
+  </ion-label></ion-item>
+</div>
+<div>
+  <ion-item>
+    <ion-label>Address</ion-label>
+    <ion-label>
+      {{servicebooking.Address}}
+    </ion-label>
+  </ion-item>
+</div>
+<div *ngIf="servicebooking.ServiceType==2">
+  <ion-item>
+    <ion-label>ServiceBookingDate</ion-label>
+    <ion-label>{{servicebooking.ServiceDate|date:'dd MMM YYYY'}}</ion-label>
+  </ion-item>
+</div>
+<div *ngIf="servicebooking.ServiceType==2">
+  <ion-item>
+    <ion-label>BookingTime</ion-label>
+    <ion-label>{{servicebooking.ServiceTime|date:'shortTime'}}</ion-label>
+  </ion-item>
+</div>
+<div>
+  <ion-item>
+    <ion-label>Amount</ion-label>
+    <ion-label>{{servicebooking.Amount}}</ion-label>
+  </ion-item>
+</div>
+<div>
+  <ion-item>
+    <ion-label>
+      Payment Type</ion-label>
+      Cash on delivery <ion-checkbox  checked="false" (ionChange)="ChangeType($event)"></ion-checkbox>
+    
+ 
+      
+     Online Payment<ion-checkbox  checked="false" (ionChange)="ChangeTypePayment($event)"></ion-checkbox>
+  </ion-item>
+</div>
+<ion-button (click)="Proceed()">
+  Booking
+</ion-button>
+
+  </div>
+
+</ion-content>

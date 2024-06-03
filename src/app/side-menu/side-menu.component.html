@@ -1,0 +1,32 @@
+<div [class]="MenuClass" id="menubar">
+  <button class="btn"> Ver :{{app.Version}}</button>
+  <button (click)="closeMenu()" class="closebtn" id="#btn-closeright"><i class="far fa-times-circle"></i></button>
+  <!-- <img src="assets/img/garageme-logo.svg" alt="garageme-logo" class="menu-logo"> -->
+
+  <ul class="menu-list">
+      <!-- <li><button><i class="fas fa-user-cog"></i> Menu One</button></li>
+      <li><button><i class="fas fa-toolbox"></i> Menu One</button></li>
+      <li><button><i class="fas fa-sliders-h"></i> Menu One</button></li>
+      <li><button><i class="fas fa-wrench"></i> Menu One</button></li>
+      <li><button><i class="fas fa-cog"></i> Menu One</button></li>
+      <li><button><i class="fas fa-sign-out-alt"></i> Logout</button></li> -->
+      <!-- <li><button> Ver :{{app.Version}}</button></li><br> -->
+      <li *ngIf="IsUser&&user.Name"><button (click)="GotoUser(user)" ><i class="fa fa-user"></i> {{user.Name}}</button></li>
+      <li *ngIf="IsUser&&user.Name==''"><button ><i class="fa fa-user"></i> +{{user.Mobile}}</button></li>
+
+      <li ><button (click)=GotoHome() ><i class="fa fa-home"></i> Home</button></li>
+      <li *ngIf="IsUser==false"><button  (click)='GotoLogin()' ><i class="fas fa-sign-out-alt"></i> Login</button></li>
+      <li *ngIf="IsUser"><button (click)="GotoHistory()" ><i class="far fa-address-card"></i> Service History</button></li>
+
+      <li *ngIf="IsUser"><button  (click)='Logout()'><i class="fas fa-sign-out-alt"></i> Logout</button></li>
+
+      <!-- <li ><button (click)="GotoAboutUs()"> About Us</button></li>
+    <li ><button (click)="GotoTerms()"> Terms & Conditions</button></li>
+    <li ><button (click)="GotoPrivacy()"> Privacy Policy</button></li>
+    <li ><button (click)="GotoFaq()"> Faq</button></li>
+    <li ><button (click)="GotoContactUs()"> Contact Us</button></li> -->
+      
+  </ul>
+  
+  <app-alert-info></app-alert-info>
+</div>

@@ -1,0 +1,154 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-alert-info></app-alert-info>
+<ion-grid>
+  <div *ngIf='IsLogin==true'>
+    <ion-row>
+      <ion-col>
+        <ion-input type="text"  [(ngModel)]="username" placeholder="Email/Mobile*"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" (click)='Login()'>Proceed</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf='IsOTP==true'>
+    <h6 style="text-align: center;">OTP has been Sent to Registered Mobile/Email</h6>
+    <ion-row>
+      <ion-col>
+        <ion-input [(ngModel)]="user.Password" placeholder="Enter OTP*"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-button (click)='OTPVerifications()' expand="full">Login</ion-button>
+      </ion-col>
+      <ion-col col-6>
+        <ion-button (click)="ResendOtp()"  expand="full">Resend OTP</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+
+  <div *ngIf='IsRegister==true'>
+    <h6 style="text-align: center;">Basic Info</h6>
+    <ion-row>
+      <ion-col>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input type="text"  [(ngModel)]="user.Name"   placeholder="Name*"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label position="floating">Address</ion-label>
+        <ion-input type="text"  [(ngModel)]="user.Address"  placeholder="Address"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label position="floating">Pincode</ion-label>
+        <ion-input type="number" *ngIf="HidePincode()==false"  [(ngModel)]="user.Pincode"   placeholder="Pincode*"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" (click)='UpdateNameAndAddress()'>Register</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </div>
+  
+</ion-grid>
+</ion-content> -->
+
+
+<body style="overflow:auto;">
+  <div class="container home-screen-padding">
+    <app-alert-info></app-alert-info>
+
+      <div class="row justify-content-center">
+          <div class="col-lg-5 banner-wrapper">
+              <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-pause="false">
+                  <ol class="carousel-indicators">
+                      <li data-target="#carouselExampleSlidesOnly" data-slide-to="0" class="active"></li> 
+                      <li data-target="#carouselExampleSlidesOnly" data-slide-to="1" ></li>
+                      <li data-target="#carouselExampleSlidesOnly" data-slide-to="2"></li>
+                  </ol>
+                  <div class="carousel-inner">
+                      <div class="carousel-item active">
+                          <img src="assets/img/acservice.jpg" alt="bluesky">
+                      </div>
+
+                      <div class="carousel-item ">
+                          <img src="assets/img/plumberrr.jpg" alt="bluesky">
+                      </div>
+
+                      <div class="carousel-item">
+                          <img src="assets/img/electrician.jpg" alt="bluesky">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  <div class="container login-container">
+      <div class="row justify-content-center">
+          <div class="col-lg-5" *ngIf='IsLogin==true'>
+              <h3>LOGIN</h3>
+              <div class="login-item">
+                  <label>Mobile No</label>
+                  <input type="text"  [(ngModel)]="username" class="form-control">
+              </div>
+              <div class="login-item">
+               
+            </div>
+              <button (click)='Login()'>Proceed</button>
+              <!-- <h5><a href="">Forgot Password?</a></h5> -->
+          </div>
+
+          <div class="col-lg-5" *ngIf='IsOTP==true'>
+            <h3>VERIFY OTP</h3>
+            <div class="login-item">
+                <label>Enter OTP</label>
+                <input [(ngModel)]="user.Password" placeholder="Enter OTP*" class="form-control">
+            </div>
+           
+            <button (click)='OTPVerifications()'>Proceed</button>
+            <h5><a style="cursor:pointer;" (click)="ResendOtp()">Resend OTP</a></h5>
+        </div>
+
+        <div class="col-lg-5" *ngIf='IsRegister==true'>
+          <h3>Basic Info</h3>
+          <div class="login-item">
+              <label>Name</label>
+              <input type="text"  [(ngModel)]="user.Name"   placeholder="Name*" class="form-control">
+          </div>
+          <div class="login-item">
+            <label>Address</label>
+            <input type="text"  [(ngModel)]="user.Address"  placeholder="Address*" class="form-control">
+        </div>
+        <div class="login-item" *ngIf="HidePincode()==false">
+          <label>Pincode</label>
+          <input type="number"   [(ngModel)]="user.Pincode"   placeholder="Pincode*" class="form-control">
+      </div>
+          <button (click)='UpdateNameAndAddress()'>Register</button>
+          
+      </div>
+
+      </div>
+  </div>
+
+  <div class="home-footer-fixed">
+      <!-- <h6 class="donthave-account"><a href="">Dont have an account? <b>Sign Up Now</b></a></h6> -->
+  </div>
+</body>

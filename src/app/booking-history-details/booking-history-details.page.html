@@ -1,0 +1,161 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>BookingHistoryDetails</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content> -->
+<body style="overflow:auto;">
+
+    <app-alert-info></app-alert-info>
+
+    <div class="header-wrapper">
+        <div class="container-fluid">
+            <div class="row justify-content-between">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
+                    <button id="barsbtn" (click)="back()"><i class="fas fa-arrow-left"></i></button>
+                    <!-- <button><i class="fas fa-map-marker-alt"></i> Location</button> -->
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
+                    <button>
+                        <!-- <font><img src="assets/img/header-icon.jpg" alt="garageme"></font>
+                      <h6>
+                          Santro, Petrol
+                      </h6> -->
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-4 col-sm-5 garageme-logo">
+                    <a href=""><img src="assets/img/logo.jpg" alt="garageme | logo"></a>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <div class="search-wrapper">
+        <div class="container">
+            <h3> Call Details</h3>
+            <!-- <div class="search-con" id="searchbar">
+              <input type="text" placeholder="Search">
+              <button id="searchbtn"><i id="searchic" class="fas fa-search"></i></button>
+          </div> -->
+        </div>
+    </div>
+
+
+    <div class="container innerpage-margin">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="service-list-items">
+                    <div class="servsingle-item">
+                        
+                    </div>
+                    <div class="servsingle-item">
+                      
+                        <h6 ><b>Customer Name:</b>{{bookings.UserName}}</h6>
+
+                    </div>
+                    <div class="servsingle-item">
+                      
+                        <h6 ><b>Address:</b>{{bookings.Address}}</h6>
+
+                    </div>
+                    <div class="servsingle-item">
+                      
+                        <h6><b>Service Name:</b>{{bookings.ServiceName}}</h6>
+                    </div>
+                    <div *ngIf="bookings.Status!=0" class="servsingle-item">
+                      
+                        <h6 ><b>Technician Name:</b>{{bookings.TechnicianName}}({{bookings.TechnicianMobile}})</h6>
+                    </div>
+                    <div class="servsingle-item">
+                        
+                        <h6 *ngIf="bookings.Status==3"><b>Status:</b>Bill Generated</h6>
+                        <h6 *ngIf="bookings.Status==2"><b>Status:</b>Executive Assigned</h6>
+                        <h6 *ngIf="bookings.Status==0"><b>Status:</b>Executive not Assigned</h6>
+                        <h6 *ngIf="bookings.Status==4"><b>Status:</b>Authorised</h6>
+
+                        
+                    </div>
+                    <div class="servsingle-item">
+                      
+                        <h6><b>Service booking date:</b>{{bookings.ServiceDate|date:'dd-MMM-yyyy'}}</h6>
+                       
+                    </div>
+                    
+                    <div class="servsingle-item">
+                      
+                       
+                        <h6><b>Service booking time:</b>{{bookings.ServiceTime|date:'shortTime'}}</h6>
+                    </div>
+                    <div class="servsingle-item">
+                      
+                        <h6 ><b>Admin Remarks:</b>{{bookings.AdminRemarks}}</h6>
+
+                    </div>
+                    <div class="servsingle-item">
+                      
+                        <h6><b>Supervisor Remarks:</b>{{bookings.SupervisorRemarks}}</h6>
+
+                    </div>
+                    <div class="servsingle-item">
+                      
+                        <h6 ><b>Technician Remarks:</b>{{bookings.TechnicianRemarks}}</h6>
+
+                    </div>
+                    <!-- <div class="servsingle-item">
+                      
+                        <h6 ><b>Total Service Time in Minutes:</b>{{bookings.ServiceHours}}</h6>
+
+                    </div> -->
+                   
+                    <div class="servsingle-item">
+                      
+                        <h6 *ngIf="bookings.PaymentType==1"><b>Payment Type:</b>Cash on Delivery</h6>
+                        <h6 *ngIf="bookings.PaymentType==2"><b>Payment Type:</b>Online Payment</h6>
+                    </div>
+                    <div class="servsingle-item col-lg-12 " *ngIf="callAssignDetailList.length>0" > 
+                        <!-- <h6>Call Assign Details :</h6> -->
+                        <table class="col-md-12 table-bordered table-striped table-condensed cf" style="table-layout: fixed;">
+                          <tr>
+                            <th>Technician</th>
+                            <th>Start </th>
+                            <th>End </th>
+                            <th>Service In Minutes</th>
+                            <th>Additional Amount</th>
+                            <th>Status</th>
+                          </tr>
+                          <tr *ngFor="let item of callAssignDetailList">
+                             <td>{{item.TechnicianName}}</td>
+                             <td>{{item.ServiceStartTime|date:'dd-MMM-yyyy hh:mm a'}}</td>
+                             <td>{{item.ServiceEndTime|date:'dd-MMM-yyyy hh:mm a'}}</td>
+                             <td>{{item.ServiceHours}}</td>
+                             <td>{{item.Amount| number : '1.2-2'}}</td>
+                             <td>{{item.ServiceStatus}}</td>
+                          </tr>  
+                        </table>
+                        <!-- <ul>
+                            <li>Space Part Name</li>
+                            <li>Space Part Name</li>
+                            <li>Space Part Name</li>
+                        </ul> -->
+                    </div> 
+                 
+                    <div class="bottom-btns">
+                    
+                        <button (click)="Call(bookings.TechinicianMobile)"><i class="fas fa-phone"></i></button>
+                        <button (click)="ViewBill()"  ><i class="far fa-address-card"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

@@ -1,0 +1,159 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>Faq</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content>-->
+<ion-content>
+</ion-content> -->
+<body style="overflow:auto;">
+  
+
+<!-- <app-side-menu (UserChanged)="UserChangedHandler($event)"></app-side-menu> -->
+<div class="header-wrapper">
+     <div class="container-fluid">
+        <div class="row justify-content-between">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-6">
+                <button id="barsbtn" (click)="back()"><i class="fas fa-arrow-left"></i></button>
+
+                <!-- <button id="barsbtn" (click)="LeftMenuButton()"><i class="fas fa-bars"></i></button>
+               <button><i class="fas fa-map-marker-alt"></i> Location</button>  --> 
+               
+            </div>
+</div>
+</div>
+
+            
+     
+
+    <!-- <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-4 col-sm-5 garageme-logo">
+                <a href=""><img src="assets/img/logo.jpg" alt="garageme | logo"></a>
+            </div>
+        </div>
+    </div> -->
+</div>
+
+<div class="search-wrapper">
+    <div class="container">
+        <h3>Frequently Asked Questions</h3>
+        <!-- <div [class]="searchClass" id="searchbar">
+          <input type="text" placeholder="Search" [(ngModel)]="searchTerm"  (input)="onSearchInput()"/>
+
+            <button id="searchbtn" (click)="ViewSearch()">
+                <i id="searchic" [class]="searchIconClass"></i></button> -->
+
+
+            <!-- <span *ngIf="searchClass=='addsearch'"><i class="fas fa-search"></i> <input [(ngModel)]="searchTerm"  (input)="onSearchInput()" name="" type="text"> </span> -->
+            <!-- <h5><font>Category</font></h5> -->
+            <!-- <button class="right-search seachicon" (click)="ViewSearch()"><i id="searchic" [class]="searchIconClass"></i></button> -->
+<!-- 
+        </div> -->
+    </div>
+</div>
+
+
+<div class="container innerpage-margin">
+
+   <!----<ul class="nav nav-tabs justify-content-center servicepage-list" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a style="cursor:pointer;" (click)="ChangeTab(1)" class="{{TabType==1?'nav-link active':'nav-link'}}" id="home-tab" data-toggle="tab"  role="tab" aria-controls="home"
+                aria-selected="true">Active Call<span ></span></a>
+        </li>
+        < <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                aria-controls="profile" aria-selected="false">Job Card</a>
+        </li> -->
+        <!----<li class="nav-item">
+            <a style="cursor:pointer;" (click)="ChangeTab(2)" class="{{TabType==2?'nav-link active':'nav-link'}}"  id="contact-tab" data-toggle="tab"  role="tab"
+                aria-controls="contact" aria-selected="false">Past Calls<span ></span></a>
+        </li>
+        <!---- <li class="nav-item">
+            <a style="cursor:pointer;" (click)="ChangeTab(3)" class="{{TabType==3?'nav-link active':'nav-link'}}" id="generate-tab" data-toggle="tab"  role="tab"
+                aria-controls="contact" aria-selected="false">Bill Generated<span *ngIf="BillList.length>0">({{BillList.length}})</span></a>
+        </li> -->
+    <!--</ul> --->
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <!-- <div class="row justify-content-center" *ngIf="TabType==1">
+                <div class="col-lg-4" *ngFor="let item of servicebookingListFilter">
+                    <div class="adminservice-list-item">
+                       
+                        <h5>{{item.ServiceName}}</h5>
+                       
+                        <h5 *ngIf="item.Status==3">Bill Generated</h5>
+                        <h5 *ngIf="item.Status==2">Executive Assigned</h5>
+                        <h5 *ngIf="item.Status==0">Executive not Assigned</h5>
+
+                        <h5>{{item.TechnicianName}}</h5>
+
+
+
+                        
+                        <h6 class="date-time">
+                            <b><i class="far fa-calendar-alt"></i> {{item.ServiceDate|date:'dd-MMM-yyyy'}}</b>
+                            <b><i class="far fa-clock"></i> {{item.ServiceTime|date:'shortTime'}}</b>
+                        </h6>
+
+                        <div class="sidebtns-con">
+                            <button (click)="Call(item.TechnicianMobile)"><i class="fas fa-phone"></i></button>
+                            <button (click)="NavigateToDetails(item)" ><i  class="far fa-address-card"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div class="row justify-content-center" *ngIf="TabType==2">
+              <div class="col-lg-4" *ngFor="let item of pastservicebookingListFilter">
+                  <div class="adminservice-list-item">
+                     
+                      <h5>{{item.ServiceName}}</h5>
+                      <h5>{{item.TechnicianName}}</h5>
+                      <h5 *ngIf="item.Status==4">Authorised</h5>
+                     
+                      <h6 class="date-time">
+                          <b><i class="far fa-calendar-alt"></i> {{item.ServiceDate|date:'dd-MMM-yyyy'}}</b>
+                          <b><i class="far fa-clock"></i> {{item.ServiceTime|date:'shortTime'}}</b>
+                      </h6>
+
+                      <div class="sidebtns-con">
+                          <button (click)="Call(item.TechnicianMobile)"><i class="fas fa-phone"></i></button>
+                          <button  (click)="NavigateToDetails(item)"><i class="far fa-address-card"></i></button>
+                      </div>
+                  </div>
+              </div>
+          </div> -->
+        
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+        <div class="tab-pane fade" id="generatetab" role="tabpanel" aria-labelledby="generate-tab">....</div>
+    </div>
+<ion-text>
+  <h3>Q. What does GarageMe provide?</h3>
+  <p>
+  A.GarageMe provides doorstep service, repair and maintenance of all brands of cars from periodical maintenance to car washing and detailing. A one-stop solution for all things cars. Be it at home, the office or the mall while you go shopping, GarageMe services your car while you focus on things that matter.  
+  </p>
+  <h3>Q.How do I book a service with GarageMe</h3>
+  <p>
+   A.Customers can log on directly to our website or download the Android or iOS app to view the different services and schedule service appointments. Or simply dial 808-696-0008 to book a service.
+  </p>
+  <h3>Q. What kind of spare parts are used for my car?</h3>
+  <p>
+  A.100% genuine spares and consumables guaranteed.  
+  </p>
+  <h3>Q. How much time will it take for my car service?</h3>
+  <p>
+    A.The service time for your car depends on the service package. A standard service takes 4-5 hours whereas, a comprehensive service takes at least 5-6 hours
+  </p>
+</ion-text>
+
+
+
+
+</div>
+</body>

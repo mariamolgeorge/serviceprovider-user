@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Select Date & Time</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Select  Date and Time</ion-label>
+    <ion-datetime [(ngModel)]="servicebooking.ServiceDate" placeholder="select date"></ion-datetime>  </ion-item>
+  <div class="form-group col-lg-3 col-md-12">
+    <ion-label>Time*</ion-label>
+    <select [(ngModel)]="servicebooking.ServiceTime" (ngModelChange)="SelectTime($event)"  class="form-control">
+        <option *ngFor="let item of TimeList" [value]="item.StartTime">{{item.StartTime|date:'shortTime'}}-{{item.EndTime|date:'shortTime'}}</option>
+       
+    </select>
+   
+  </div>
+  <ion-button (click)="submit()">Save</ion-button>
+
+
+</ion-content>

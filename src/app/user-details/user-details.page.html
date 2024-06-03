@@ -1,0 +1,79 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>UserDetails</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content> -->
+<body style="overflow:auto;">
+
+  <app-alert-info></app-alert-info>
+
+  <div class="header-wrapper">
+      <div class="container-fluid">
+          <div class="row justify-content-between">
+              <div class="col-lg-4 col-md-6 col-sm-6 col-6">
+                  <button id="barsbtn" (click)="back()"><i class="fas fa-arrow-left"></i></button>
+                  <!-- <button><i class="fas fa-map-marker-alt"></i> Location</button> -->
+              </div>
+
+              <div class="col-lg-4 col-md-6 col-sm-6 col-6">
+                  <button>
+                      <!-- <font><img src="assets/img/header-icon.jpg" alt="garageme"></font>
+                    <h6>
+                        Santro, Petrol
+                    </h6> -->
+                  </button>
+              </div>
+          </div>
+      </div>
+
+      <!-- <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-lg-4 col-md-4 col-sm-5 garageme-logo">
+                  <a href=""><img src="assets/img/logo.jpg" alt="garageme | logo"></a>
+              </div>
+          </div>
+      </div> -->
+  </div>
+
+  <div class="search-wrapper">
+      <div class="container">
+          <h3> User Details</h3>
+          <!-- <div class="search-con" id="searchbar">
+            <input type="text" placeholder="Search">
+            <button id="searchbtn"><i id="searchic" class="fas fa-search"></i></button>
+        </div> -->
+      </div>
+  </div>
+
+  <div class="container login-container">
+    <div class="row justify-content-center">
+
+
+  <div class="col-lg-5" >
+    <h3>Basic Info</h3>
+    <div class="login-item">
+        <label>Name</label>
+        <input type="text"  [(ngModel)]="user.Name"   placeholder="Name*" class="form-control">
+    </div>
+    <div class="login-item">
+      <label>Mobile</label>
+      <input type="number"   [(ngModel)]="user.Mobile"   placeholder="Pincode*" class="form-control">
+  </div>
+    <div class="login-item">
+      <label>Address</label>
+      <input type="text"  [(ngModel)]="user.Address"  placeholder="Address*" class="form-control">
+  </div>
+  <div class="login-item">
+    <label>Pincode</label>
+    <input type="number"   [(ngModel)]="user.Pincode"   placeholder="Pincode*" class="form-control">
+</div>
+    <button (click)='UpdateNameAndAddress()'>Submit</button>
+    
+</div>
+</div>
+</div>
+</body>

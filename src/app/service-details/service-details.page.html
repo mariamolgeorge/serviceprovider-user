@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="back()"></ion-back-button>
+    </ion-buttons>
+    <ion-title >{{services.Name}} </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<div>
+  <div>
+   
+    <ion-row>
+      <ion-col col-6>
+        <ion-button expand="full"  (click)="changeservicetype()" Color="light" >
+          Urgently Required
+        </ion-button>
+      </ion-col>
+      <ion-col col-6>
+        <ion-button  expand="full"  (click)="change()" > Schedule for Later</ion-button>
+        <!-- (click)="NavigateToServiceBooking(servicebooking)" -->
+      </ion-col>
+    </ion-row>
+
+  </div>
+  <div>
+
+      <ion-item>
+        <ion-label >{{services.Name}}</ion-label>
+        
+      </ion-item>  
+    </div>
+
+    <div>
+        <ion-item>
+          <ion-label >{{services.Code}}</ion-label>
+        </ion-item>  
+    </div>
+    <div>
+      <ion-item>
+          <ion-label >{{services.Description}}</ion-label>
+        </ion-item>  
+      </div>
+      <div>
+        <ion-item>
+            <ion-label >{{services.Rules}}</ion-label>
+        </ion-item>  
+      </div>
+      <div>
+        <ion-item>
+          <ion-label>{{services.CategoryName}}</ion-label>
+         
+        </ion-item>
+      </div>
+     
+      <div>
+          <ion-item>
+              <ion-label >{{services.RateChart}}</ion-label>
+          </ion-item>  
+        </div> 
+      
+       <div>
+         <ion-item>
+           <ion-label>Remarks</ion-label>
+           <ion-textarea [(ngModel)]="servicebooking.Remarks"></ion-textarea>
+         </ion-item>
+       </div>
+
+          <div>
+            <br>
+         <!-- <img src={{services.ImagePath}} style="width:150px;height:150px;padding-left:12px;"> -->
+        <img src="{{appconfig.AssetUrl}}/assets/images/ServicesImages/{{services.Id}}.jpg"  (error)='handleDisplayImgError($event)'>
+        </div> 
+        <div  >
+        <ion-row >
+          <ion-col col-12  > <ion-button  expand="full"  (click)="Address()"> Select Address</ion-button></ion-col>
+          <ion-col col-12 > <ion-button *ngIf="servicebooking.ServiceType!=1" expand="full" (click)="DateTime()"> Select Date and Time</ion-button></ion-col>
+
+        </ion-row> </div>
+        <ion-row>
+          <ion-col col-12> <ion-button expand="full" (click)="NavigateToServiceBooking()" > ContinueBooking</ion-button></ion-col>
+     
+        </ion-row>
+        </div>
+
+      </ion-content>
+    
+
+
+
+
+
+
+
+

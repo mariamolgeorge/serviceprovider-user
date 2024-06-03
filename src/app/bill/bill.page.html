@@ -1,0 +1,168 @@
+<head *ngIf="IsPrint">
+    <meta name="viewport" content="width=1024">
+</head>
+
+<body style="overflow: auto;padding-top: 90px;">
+    <div class="container" *ngIf="bill">
+        <div>
+            <button class="addnewbtn" style="width: 100px;" (click)="Print()">Save</button>
+            <button class="addnewbtn" *ngIf="showshare" style="width: 100px;margin: 10px !important;"
+                (click)="Share()">Share</button>
+        </div>
+
+
+        <div id="print_div" #print_div>
+            <div class="header-con">
+                <img style="height: 80px;" src="assets/img/logo-01.png" alt="bluski">
+                <h3 style="color: #043995;">Invoice</h3>
+            </div>
+            <div class="row header-text" style="border-bottom: 2px solid #ececec;">
+                <div class="col-lg-6 col-md-6">
+                    <p><b>Palaparambil Lane</b></p>
+                    <p><b>Punkunnam P.O</b></p>
+                    <p><b>Thrissur, Kerala 680002</b></p>
+                    <p><b>Phone: +91 9746259902 ,+91 9746259932</b></p>
+                </div>
+            </div>
+            <div class="row header-text">
+                <div class="col-lg-4 col-md-4">
+                    <p><b>Customer Name & address</b> : {{bill.UserName}},{{bill.Address}}</p>
+                    <p><b>Customer ID</b> : {{bill.UserId}}</p>
+                    <p><b>Mobile</b> : {{bill.Mobile}}</p>
+                    <p><b>GST</b> : 9876540</p>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <p><b>Invoice No</b> : {{bill.InvoiceNo}}</p>
+                    <p><b>ServiceBooking No</b> : {{bill.ServiceBookingNo}}</p>
+                    <p><b>Service </b> : {{bill.ServiceName}}</p>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <p><b>Invoice Date</b> : {{bill.InvoiceDate|date:'dd-MMM-yy'}}</p>
+                    <p><b>Invoice Time</b>: {{bill.InvoiceDate|date:'shortTime'}}</p>
+                    <p><b>Service Date</b> : {{bill.ServiceDate|date:'dd-MMM-yy'}}</p>
+                    <p><b>Service Time</b> : {{bill.serviceTime|date:'shortTime'}}</p>
+                </div>
+            </div>
+            <div class="invoice-wrapper">
+                <div class="invoicecontent-header" style="background-color: #2e60b5">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                            <h6>Sl. No.</h6>
+                        </div>
+                        <div class="col-lg-3 col-md-2 col-sm-2 col-2">
+                            <h6>Description</h6>
+                        </div>
+                        <div class="col-lg-3 col-md-2 col-sm-2 col-3">
+                            <h6>HSN/SC</h6>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-3 col-2">
+                            <h6>Qty</h6>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-3">
+                            <h6>Amount</h6>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="invoicecontent-row">
+                    <div class="row" style="text-align: center;" >
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-2">1</div>
+                        <div class="col-lg-3 col-md-2 col-sm-2 col-2">{{bill.ServiceName}}</div>
+                        <div class="col-lg-3 col-md-2 col-sm-2 col-3">998313 - 18%</div>
+                        <div  class="col-lg-2 col-md-4 col-sm-3 col-2">{{ServiceHour}}(hrs)</div>
+                        <div  class="col-lg-2 col-md-2 col-sm-3 col-3">
+                            <b>{{Amount|number:'1.2-2'}}</b></div>
+                    </div>
+                </div>
+
+                <div class="invoicecontent-row" *ngIf="bill.AdditionalAmount>0">
+                    <div class="row" style="text-align: center;">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-2">2</div>
+                        <div class="col-lg-3 col-md-2 col-sm-2 col-2">Miscellaneous Charges</div>
+                        <div class="col-lg-3 col-md-2 col-sm-2 col-3">998313 - 18%</div>
+                        <div  class="col-lg-2 col-md-4 col-sm-3 col-2">1</div>
+                        <div  class="col-lg-2 col-md-2 col-sm-3 col-3">
+                            <b>{{bill.AdditionalAmount|number:'1.2-2'}}</b></div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="row invoicecontent-footer">
+                    <div class="col-6 remarks-con"><b>Remarks</b>
+                        <p>{{bill.TechnicianRemarks}}</p>
+                    </div>
+                    <div class="col-6">
+                        <hr class="bordetop">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-6 col-7"></div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-5">
+                                <h5 style="color: black;">{{TotalAmount|number:'1.2-2'}}</h5>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-6 col-7">
+                                <h6>SGST 9%</h6>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-5">
+                                <h6>{{SGSTAmount|number:'1.2-2'}}</h6>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-6 col-7">
+                                <h6>CGST 9%</h6>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-5">
+                                <h6>{{CGSTAmount|number:'1.2-2'}}</h6>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- //commented by anu 22-09-2021 -->
+                        <!-- <div class="row">
+                      <div class="col-lg-8 col-md-8 col-sm-6 col-7">
+                          <h6>Flood Cess 1%</h6>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-sm-6 col-5">
+                          <h6>{{CessAmount|number:'1.2-2'}}</h6>
+                      </div>
+                  </div> -->
+                        <!-- //commented by anu 22-09-2021 -->
+                        <hr class="bordetop">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-6 col-7">
+                                <h4 style="color: black;">Total</h4>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-5">
+                                <h4 style="color: black;">{{(TotalAmount+SGSTAmount+CGSTAmount)|number:'1.2-2'}}</h4>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="qr"> 
+                <qrcode [qrdata]="myAngularxQrCode" [width]="150" [errorCorrectionLevel]="'M'"></qrcode>
+            </div>
+
+            <div class="row header-text qr" style="text-align: center;">
+                <div class="col-lg-6 col-md-6">
+                <p> If you have any questions about this invoice, please contact</p>	
+               <b> <p>[Phone: +91 97462 599 02/32, email: info@blueskyfms.in]	</p></b>						
+                <p><a href="www.blueskyfms.in">www.blueskyfms.in</a></p>
+                </div>
+            </div>
+            <div class="invoice-footer" style="background-color:#2e60b5">
+                <!-- <p>Zayara Innovations Private Limited, 1st Floor 2/4485 Parayil ittiera Memorial Shopping Complex
+              velayanadu
+              vellangallur, Trissur, Kerala - 680662<br>
+              www.garageme.in | info@garageme.in | Mob : 8086960008</p> -->
+            </div>
+        </div>
+
+    </div>
+
+</body>

@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="back()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Services</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+   <!-- <div id="no-more-tables">
+    <table class="col-md-12 table-bordered table-striped table-condensed cf">
+      <thead class="cf table-header ">
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Code</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr  *ngFor="let item of ServicesListFilter">
+            <td  data-title="Name" >{{item.Name}}</td>
+            <td  data-title="Category" >{{item.CategoryName}}</td>
+            <td  data-title="Code">{{item.Code}}</td>
+          </tr>
+        </tbody>
+        </table>
+        </div>  -->
+
+      <div  *ngFor="let name of CategoryList">
+          <h5 style="text-decoration:underline;">{{name.Name}}</h5><br>
+      <div >
+        <ion-row >
+          <ion-col col-3 *ngFor="let item of GetList(name.Id)" (click)="openItemDetails(item)">
+            <img *ngIf="item.CategoryId==name.Id" width="60" height="60" src="{{appconfig.AssetUrl}}/assets/images/ServicesImages/{{item.Id}}.jpg"  (error)='handleDisplayImgError($event)' alt="cake">
+            <h5 *ngIf="item.CategoryId==name.Id" >{{item.Name}}</h5>
+          </ion-col>
+        </ion-row>
+        </div>
+      </div>
+</ion-content>

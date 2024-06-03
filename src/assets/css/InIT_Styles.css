@@ -1,0 +1,46 @@
+.my-modal 
+	.modal-wrapper {
+	  position: absolute;
+	  top: 0 !important;
+	  left: 0 !important;
+	  display: block;
+	  width: 100% !important;
+	  height: 100% !important;
+	} 
+
+	/* table.test th {
+		background-color:white;
+		margin: 14px 14px 14px 14px;
+		padding: 12px 12px 12px 12px;
+	}
+	table.test {
+		border-collapse: separate;
+		border-spacing: 40px;
+		*border-collapse: expression('separate', cellSpacing = '20px');
+	} */
+
+	.ionic-selectable-cover {
+		top: 20px !important;
+	}
+	ionic-selectable-value-item {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;}
+
+	.right-search{
+
+		padding: 0px;
+		margin: 0px;
+		position: absolute;
+		right: 8px;
+		top: 10px;
+		z-index: 999;
+		color: #f1c15a;
+		border: none;
+		outline: none;
+		background: none;
+		float: right;
+		width: auto;
+		font-size: 26px;
+		text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
+	}
